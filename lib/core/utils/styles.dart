@@ -9,7 +9,7 @@ abstract class Styles {
 
   static const titleStyle14 = TextStyle(
     fontSize: 14,
-    fontWeight: FontWeight.w400, //normal
+    fontWeight: FontWeight.w500, //medium
   );
 
   static const titleStyle18 = TextStyle(
@@ -20,7 +20,6 @@ abstract class Styles {
   static const titleStyle20 = TextStyle(
     fontSize: 20,
     fontWeight: FontWeight.w400, //normal
-    fontFamily: kGTSectraFine,
   );
 
   static const titleStyle30 = TextStyle(
