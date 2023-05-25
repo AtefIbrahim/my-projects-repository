@@ -32,27 +32,31 @@ class BookModel extends BookEntity {
           rating: volumeInfo.averageRating,
         );
 
-  // BookModel.fromJson(Map<String, dynamic> json) {
-  //   kind = json['kind'] as String?;
-  //   id = json['id'] as String?;
-  //   etag = json['etag'] as String?;
-  //   selfLink = json['selfLink'] as String?;
-  //   volumeInfo = (json['volumeInfo'] as Map<String,dynamic>?) != null ? VolumeInfo.fromJson(json['volumeInfo'] as Map<String,dynamic>) : null;
-  //   saleInfo = (json['saleInfo'] as Map<String,dynamic>?) != null ? SaleInfo.fromJson(json['saleInfo'] as Map<String,dynamic>) : null;
-  //   accessInfo = (json['accessInfo'] as Map<String,dynamic>?) != null ? AccessInfo.fromJson(json['accessInfo'] as Map<String,dynamic>) : null;
-  //   searchInfo = (json['searchInfo'] as Map<String,dynamic>?) != null ? SearchInfo.fromJson(json['searchInfo'] as Map<String,dynamic>) : null;
-  // }
-  //
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> json = <String, dynamic>{};
-  //   json['kind'] = kind;
-  //   json['id'] = id;
-  //   json['etag'] = etag;
-  //   json['selfLink'] = selfLink;
-  //   json['volumeInfo'] = volumeInfo?.toJson();
-  //   json['saleInfo'] = saleInfo?.toJson();
-  //   json['accessInfo'] = accessInfo?.toJson();
-  //   json['searchInfo'] = searchInfo?.toJson();
-  //   return json;
-  // }
+
+  factory BookModel.fromJson(Map<String, dynamic> json) {
+    return BookModel(
+        kind :json['kind'],
+        id : json['id'],
+        etag : json['etag'] ,
+        selfLink : json['selfLink'],
+        volumeInfo : (json['volumeInfo'] as Map<String,dynamic>?) != null ? VolumeInfo.fromJson(json['volumeInfo'] as Map<String,dynamic>) : null,
+        saleInfo :(json['saleInfo'] as Map<String,dynamic>?) != null ? SaleInfo.fromJson(json['saleInfo'] as Map<String,dynamic>) : null,
+        accessInfo : (json['accessInfo'] as Map<String,dynamic>?) != null ? AccessInfo.fromJson(json['accessInfo'] as Map<String,dynamic>) : null,
+        searchInfo : (json['searchInfo'] as Map<String,dynamic>?) != null ? SearchInfo.fromJson(json['searchInfo'] as Map<String,dynamic>) : null,
+    );
+  }
+
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> json = <String, dynamic>{};
+    json['kind'] = kind;
+    json['id'] = id;
+    json['etag'] = etag;
+    json['selfLink'] = selfLink;
+    json['volumeInfo'] = volumeInfo?.toJson();
+    json['saleInfo'] = saleInfo?.toJson();
+    json['accessInfo'] = accessInfo?.toJson();
+    json['searchInfo'] = searchInfo?.toJson();
+    return json;
+  }
 }
