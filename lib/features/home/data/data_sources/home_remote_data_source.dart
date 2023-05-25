@@ -14,6 +14,14 @@ class HomeRemoteDataSource extends BasicHomeRemoteDataSource {
   @override
   Future<List<BookEntity>> fetchBestSellerBooks() async {
     var data = await apiService.get(
+        endPoint: "volumes?Filtering=free-ebooks&Sorting=newest &q=pogramming");
+
+    return parseBooksList(data);
+  }
+
+  @override
+  Future<List<BookEntity>> fetchFeaturedBooks() async {
+    var data = await apiService.get(
         endPoint: "volumes?Filtering=free-ebooks&q=pogramming");
 
     return parseBooksList(data);
@@ -26,11 +34,4 @@ class HomeRemoteDataSource extends BasicHomeRemoteDataSource {
     }
     return booksList;
   }
-
-  @override
-  Future<List<BookEntity>> fetchFeaturedBooks() {
-    // TODO: implement fetchFeaturedBooks
-    throw UnimplementedError();
-  }
-
 }
