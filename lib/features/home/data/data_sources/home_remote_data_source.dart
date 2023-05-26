@@ -14,24 +14,30 @@ class HomeRemoteDataSource extends BasicHomeRemoteDataSource {
   HomeRemoteDataSource(this.apiService);
 
   @override
-  Future<List<BookEntity>> fetchBestSellerBooks() async {
-    var data = await apiService.get(
-        endPoint: "volumes?Filtering=free-ebooks&Sorting=newest &q=pogramming");
-
-    List<BookEntity> booksList = parseBooksList(data);
-
-    saveBooksLocally(booksList, kFeaturedBox);
-
-    return booksList;
-  }
-
-  @override
   Future<List<BookEntity>> fetchFeaturedBooks() async {
     var data = await apiService.get(
         endPoint: "volumes?Filtering=free-ebooks&q=pogramming");
 
-    return parseBooksList(data);
+    List<BookEntity> featuredBooksList = parseBooksList(data);
+
+    saveBooksLocally(featuredBooksList, kFeaturedBox);
+
+    return featuredBooksList;
   }
+
+  @override
+  Future<List<BookEntity>> fetchBestSellerBooks() async {
+    var data = await apiService.get(
+        endPoint: "volumes?Filtering=free-ebooks&Sorting=newest &q=pogramming");
+
+    List<BookEntity> bestSellerBooksList = parseBooksList(data);
+
+    saveBooksLocally(bestSellerBooksList, kBestSellerBox);
+
+    return bestSellerBooksList;
+  }
+
+
 
   List<BookEntity> parseBooksList(Map<String, dynamic> data) {
     List<BookEntity> booksList = [];
