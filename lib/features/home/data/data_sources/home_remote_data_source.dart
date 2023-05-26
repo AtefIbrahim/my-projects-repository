@@ -1,4 +1,6 @@
+import 'package:bookly/app_constants.dart';
 import 'package:bookly/core/utils/api_service.dart';
+import 'package:bookly/core/utils/functions/save_books.dart';
 import 'package:bookly/features/home/data/models/book_model.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 
@@ -16,7 +18,11 @@ class HomeRemoteDataSource extends BasicHomeRemoteDataSource {
     var data = await apiService.get(
         endPoint: "volumes?Filtering=free-ebooks&Sorting=newest &q=pogramming");
 
-    return parseBooksList(data);
+    List<BookEntity> booksList = parseBooksList(data);
+
+    saveBooksLocally(booksList, kFeaturedBox);
+
+    return booksList;
   }
 
   @override
