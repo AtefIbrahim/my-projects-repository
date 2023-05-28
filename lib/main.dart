@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:bookly/app_constants.dart';
 import 'package:bookly/core/utils/app_router.dart';
 import 'package:bookly/core/utils/functions/setup_service_locator.dart';
+import 'package:bookly/core/utils/simple_bloc_observer.dart';
 import 'package:bookly/features/home/data/repository/home_repository_implementation.dart';
 import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:bookly/features/home/domain/use_cases/fetch_best_seller_books_use_case.dart';
@@ -28,6 +29,7 @@ Future<void> main() async {
   await Hive.openBox<BookEntity>(kFeaturedBox);
   await Hive.openBox<BookEntity>(kBestSellerBox);
 
+  Bloc.observer = SimpleBlocObserver();
   runApp(const Bookly());
 }
 
