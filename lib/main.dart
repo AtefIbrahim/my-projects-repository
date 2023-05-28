@@ -5,9 +5,14 @@ import 'package:bookly/features/home/domain/entities/book_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 
 Future<void> main() async {
-  var path = Directory.current.path;
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
+  var path = appDocumentsDir.path;
+
   Hive
     ..init(path)
     ..registerAdapter(BookEntityAdapter());
