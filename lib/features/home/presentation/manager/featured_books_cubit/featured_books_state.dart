@@ -16,3 +16,10 @@ class FeaturedBooksSuccess extends FeaturedBooksState {
   final List<BookEntity> featuredBooksList;
   FeaturedBooksSuccess(this.featuredBooksList);
 }
+
+class FeaturedBooksPaginationLoading extends FeaturedBooksState {}
+
+class FeaturedBooksPaginationFailure extends FeaturedBooksState {
+  final String errorMessage;
+  FeaturedBooksPaginationFailure(this.errorMessage);
+}
